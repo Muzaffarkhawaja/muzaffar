@@ -1,0 +1,40 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id("com.android.application") version "8.2.0" apply false // Or the latest stable version
+    id("org.jetbrains.kotlin.android") version "1.9.22" apply false // Or the latest stable version
+    // Add other plugins here if needed (e.g., for Hilt, Navigation Safe Args, etc.)
+    // id("com.google.dagger.hilt.android") version "2.50" apply false
+    // id("androidx.navigation.safeargs.kotlin") version "2.7.6" apply false
+}
+
+// You can also define common versions for dependencies here
+// ext {
+//     val coreKtxVersion = "1.12.0"
+//     // ... other versions
+// }
+
+// buildscript {
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+//     dependencies {
+//         // If you have specific buildscript dependencies, add them here
+//         // Example for older AGP versions (not needed with plugins block)
+//         // classpath("com.android.tools.build:gradle:8.2.0")
+//         // classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
+//     }
+// }
+
+// allprojects {
+//     repositories {
+//         google()
+//         mavenCentral()
+//         // Add other repositories like JitPack if needed
+//         // maven { url = uri("https://jitpack.io") }
+//     }
+// }
+
+// tasks.register("clean", Delete::class) {
+//     delete(rootProject.buildDir)
+// }

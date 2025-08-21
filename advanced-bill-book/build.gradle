@@ -1,0 +1,169 @@
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    // If you're using Kotlin Kapt for annotation processing (e.g., with Room, Hilt, Glide):
+    // id("org.jetbrains.kotlin.kapt")
+    // If you're using Hilt for dependency injection:
+    // id("com.google.dagger.hilt.android")
+    // If you're using Parcelize for object serialization:
+    // id("kotlin-parcelize")
+}
+
+android {
+    namespace = "com.ngo.advanced-bill-book" // <-- TODO: Replace with your actual package name
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.ngo.advanced-bill-book" // <-- TODO: Replace with your unique application ID
+        minSdk = 24
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro" // Ensure this file exists in your app module directory
+            )
+        }
+        debug {
+            isMinifyEnabled = false
+            // Consider adding application ID suffix for debug builds
+            // applicationIdSuffix = ".debug"
+            // Consider adding version name suffix for debug builds
+            // versionNameSuffix = "-DEBUG"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        compose = true
+        // viewBinding = false // Explicitly set if not using View Binding
+        // dataBinding = false // Explicitly set if not using Data Binding
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8" // Compatible with Kotlin 1.9.22
+        // Check https://developer.android.com/jetpack/androidx/releases/compose-kotlin
+        // for the correct version based on your Kotlin plugin version.
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/DEPENDENCIES" // Often needed
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
+        }
+    }
+}
+
+dependencies {
+    // Core Android & Kotlin libraries
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3") // For coroutines
+
+    // Lifecycle components (ViewModel, LiveData, Lifecycle KTX)
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    // implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0") // Uncomment if using LiveData
+
+    // Jetpack Compose
+    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation(platform("androidx.compose:compose-bom:2024.02.00")) // BOM for managing Compose versions
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3") // Material Design 3 components
+
+    // Jetpack Compose Navigation (Uncomment if using Compose Navigation)
+    // implementation("androidx.navigation:navigation-compose:2.7.7") // Use the latest version
+
+    // UI (Traditional View System - Uncomment if using XML layouts alongside or instead of Compose)
+    // implementation("androidx.appcompat:appcompat:1.6.1")
+    // implementation("com.google.android.material:material:1.11.0")
+    // implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    // Navigation (XML-based Navigation Graph - Uncomment if using)
+    // implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    // implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+
+    // Room for local database (Uncomment and configure if needed)
+    // val roomVersion = "2.6.1"
+    // implementation("androidx.room:room-runtime:$roomVersion")
+    // annotationProcessor("androidx.room:room-compiler:$roomVersion") // For Java projects
+    // // For Kotlin projects, use KSP (preferred) or KAPT:
+    // //
+    // // KSP (Kotlin Symbol Processing - Recommended for Kotlin)
+    // // 1. Add KSP plugin in project-level build.gradle.kts: id("com.google.devtools.ksp") version "1.9.22-1.0.17" apply false
+    // // 2. Apply KSP plugin in this module-level build.gradle.kts: id("com.google.devtools.ksp")
+    // // 3. Use 'ksp' instead of 'kapt' for the compiler:
+    // // ksp("androidx.room:room-compiler:$roomVersion")
+    // //
+    // // KAPT (Kotlin Annotation Processing Tool - if not using KSP)
+    // // 1. Apply 'kotlin-kapt' plugin at the top of this file: id("org.jetbrains.kotlin.kapt")
+    // // kapt("androidx.room:room-compiler:$roomVersion")
+    // implementation("androidx.room:room-ktx:$roomVersion") // Kotlin Extensions and Coroutines support for Room
+
+    // Hilt for Dependency Injection (Uncomment and configure if needed)
+    // // 1. Add Hilt plugin in project-level build.gradle.kts: id("com.google.dagger.hilt.android") version "2.51.1" apply false
+    // // 2. Apply Hilt plugin at the top of this file: id("com.google.dagger.hilt.android")
+    // // 3. Apply 'kotlin-kapt' plugin if not already: id("org.jetbrains.kotlin.kapt")
+    // implementation("com.google.dagger:hilt-android:2.51.1") // Use the latest Hilt version
+    // kapt("com.google.dagger:hilt-compiler:2.51.1")
+    // For Hilt Navigation Compose integration (Uncomment if using Hilt with Compose Navigation)
+    // implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+
+    // Networking (e.g., Retrofit & OkHttp - Uncomment and configure if needed)
+    // implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    // implementation("com.squareup.retrofit2:converter-gson:2.9.0") // Or Moshi, Jackson, etc.
+    // implementation("com.squareup.okhttp3:logging-interceptor:4.12.0") // For logging network requests
+
+    // Image Loading (e.g., Coil for Compose, Glide/Picasso for Views - Uncomment and configure if needed)
+    // For Compose with Coil:
+    // implementation("io.coil-kt:coil-compose:2.6.0")
+    // For Views with Glide:
+    // implementation("com.github.bumptech.glide:glide:4.16.0")
+    // kapt("com.github.bumptech.glide:compiler:4.16.0") // Or use annotationProcessor for Java
+
+    // Testing
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.00")) // For Compose testing
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4") // For Compose UI tests
+    debugImplementation("androidx.compose.ui:ui-tooling") // For Compose Layout Inspector & Preview
+    debugImplementation("androidx.compose.ui:ui-test-manifest") // For Compose tests
+}
+
+// If using Kotlin Kapt, ensure the plugin is applied at the top:
+// plugins {
+//     id("org.jetbrains.kotlin.kapt")
+// }
+
+// If using Hilt, ensure the plugin is applied at the top:
+// plugins {
+//     id("com.google.dagger.hilt.android")
+// }
+
+// If using KSP (e.g., for Room), ensure the plugin is applied at the top:
+// plugins {
+//     id("com.google.devtools.ksp")
+// }

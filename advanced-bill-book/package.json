@@ -1,0 +1,28 @@
+{
+  "name": "advanced-bill-book",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^6.0.0",
+    "@react-navigation/stack": "^6.0.0",
+    "expo": "^47.0.0",
+    "firebase": "^9.6.0",
+    "react": "18.0.0",
+    "react-native": "0.69.0",
+    "react-native-qrcode-svg": "^6.1.1",
+    "react-native-vector-icons": "^9.2.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.69.0",
+    "typescript": "^4.7.0"
+  }
+}
